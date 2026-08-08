@@ -5,40 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rifa Solidária</title>
 <meta name="description" content="Rifa solidária — participe e ajude.">
+<meta name="theme-color" content="#fdf6f0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --creme:#fdf6f0; --papel:#fffcfa; --tinta:#3d2b28; --suave:#8a7370;
-  --rosa:#d4507e; --rosa-claro:#fce8ef; --rosa-borda:#f5c9d9;
+  --rosa:#d4507e; --rosa-fundo:#fce8ef; --rosa-borda:#f5c9d9; --rosa-escuro:#b23f68;
   --verde:#2f8f5b; --verde-claro:#e6f4ec;
   --ambar:#b5751a; --ambar-claro:#fdf1de;
-  --linha:#efe2da; --raio:14px;
+  --linha:#efe2da; --raio:16px;
+  --sombra:0 1px 2px rgba(140,90,80,.05), 0 10px 26px -18px rgba(140,90,80,.45);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Karla',system-ui,sans-serif;background:var(--creme);color:var(--tinta);
-font-size:15px;line-height:1.55}
+body{font-family:'Karla',system-ui,sans-serif;color:var(--tinta);font-size:15px;line-height:1.55;
+background:var(--creme);
+background-image:
+  radial-gradient(720px 380px at 50% -60px, rgba(212,80,126,.10), rgba(212,80,126,0) 70%),
+  radial-gradient(520px 300px at 110% 340px, rgba(181,117,26,.07), rgba(181,117,26,0) 70%);
+background-repeat:no-repeat}
 button,input{font-family:inherit}
 button{cursor:pointer;border:none;background:none;color:inherit}
 button:focus-visible,input:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
-.wrap{max-width:560px;margin:0 auto;padding:0 16px 60px}
+img{display:block}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 132px}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
+.escondido{display:none!important}
 
 /* --- capa --- */
-header{text-align:center;padding:34px 0 26px}
-.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
-h1{font-size:44px;line-height:.95;letter-spacing:-.01em}
-h1 em{display:block;font-style:italic;color:var(--rosa);font-size:52px;margin-top:2px}
-.tagline{margin-top:14px;font-size:15px;color:var(--suave);max-width:340px;
-margin-left:auto;margin-right:auto}
-.para{display:inline-block;margin-top:16px;background:var(--rosa);color:#fff;
-font-weight:700;font-size:13px;letter-spacing:.03em;padding:8px 16px;border-radius:100px}
-
+header{text-align:center;padding:32px 0 22px}
+h1{font-size:42px;line-height:.95;letter-spacing:-.01em}
+h1 em{display:block;font-style:italic;color:var(--rosa);font-size:50px;margin-top:2px}
+.tagline{margin:14px auto 0;font-size:15px;color:var(--suave);max-width:340px}
+.para{display:inline-flex;align-items:center;gap:7px;margin-top:15px;background:var(--rosa);color:#fff;
+font-weight:700;font-size:13px;letter-spacing:.03em;padding:9px 17px;border-radius:100px;
+box-shadow:0 10px 22px -12px rgba(180,60,110,.85)}
 
 /* --- retrato --- */
-.retrato{position:relative;width:212px;margin:22px auto 4px}
+.retrato{position:relative;width:210px;margin:22px auto 4px}
 .retrato::before{content:'';position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
-width:280px;height:280px;border-radius:50%;
+width:290px;height:290px;border-radius:50%;
 background:radial-gradient(circle,rgba(212,80,126,.13) 0%,rgba(212,80,126,0) 68%);
 pointer-events:none}
 .moldura{position:relative;padding:9px;
@@ -48,10 +55,8 @@ border-radius:118px 118px 22px 22px;
 box-shadow:0 20px 40px -20px rgba(170,80,110,.5),
            0 0 0 1px rgba(255,255,255,.7) inset,
            0 1px 3px rgba(170,80,110,.12)}
-.moldura img{display:block;width:100%;aspect-ratio:305/396;object-fit:cover;
-object-position:50% 34%;border-radius:110px 110px 14px 14px;
-filter:saturate(1.02)}
-/* o véu derrete a base da foto no fundo da página */
+.moldura img{width:100%;aspect-ratio:305/396;object-fit:cover;
+object-position:50% 34%;border-radius:110px 110px 14px 14px;filter:saturate(1.02)}
 .moldura .veu{position:absolute;left:9px;right:9px;top:9px;bottom:9px;
 border-radius:110px 110px 14px 14px;pointer-events:none;
 background:linear-gradient(to bottom,
@@ -61,81 +66,119 @@ border-radius:114px 114px 18px 18px;pointer-events:none}
 .selo-cor{position:absolute;right:-6px;bottom:6px;width:38px;height:38px;border-radius:50%;
 background:var(--rosa);color:#fff;display:flex;align-items:center;justify-content:center;
 font-size:16px;box-shadow:0 6px 16px -4px rgba(180,60,110,.6);border:2.5px solid var(--creme)}
-.enfeite{position:absolute;color:var(--rosa);opacity:.32;pointer-events:none;
-font-size:15px;line-height:1}
+.enfeite{position:absolute;color:var(--rosa);opacity:.32;pointer-events:none;font-size:15px;line-height:1}
 .enfeite.a{left:-16px;top:26px;transform:rotate(-16deg)}
 .enfeite.b{right:-14px;top:64px;font-size:11px;transform:rotate(12deg)}
 .enfeite.c{left:-8px;bottom:52px;font-size:11px;transform:rotate(8deg)}
 .nome-benef{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;
-font-size:25px;font-weight:600;font-style:italic;margin-top:12px;color:var(--tinta)}
+font-size:25px;font-weight:600;font-style:italic;margin-top:12px}
 
-/* --- barra de progresso --- */
+/* --- progresso --- */
 .progresso{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);
-padding:16px;margin-bottom:18px}
+padding:16px 18px;margin-bottom:24px;box-shadow:var(--sombra)}
 .progresso .top{display:flex;justify-content:space-between;align-items:baseline;
-font-size:13px;color:var(--suave);margin-bottom:9px}
-.progresso b{font-size:22px;color:var(--tinta);font-weight:700}
-.trilho{height:8px;background:var(--rosa-claro);border-radius:6px;overflow:hidden}
-.trilho i{display:block;height:100%;background:var(--rosa);border-radius:6px;
-width:0;transition:width .5s ease}
+font-size:13px;color:var(--suave);margin-bottom:10px}
+.progresso b{font-size:23px;color:var(--tinta);font-weight:700;font-variant-numeric:tabular-nums}
+.trilho{height:9px;background:var(--rosa-fundo);border-radius:6px;overflow:hidden}
+.trilho i{display:block;height:100%;border-radius:6px;width:0;transition:width .6s cubic-bezier(.4,0,.2,1);
+background:linear-gradient(90deg,#e0729a,var(--rosa))}
 
 /* --- prêmios --- */
-.premios{display:grid;gap:10px;margin-bottom:22px}
+.titulo-secao{display:flex;align-items:center;gap:10px;margin:0 2px 12px}
+.titulo-secao span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+color:var(--suave);white-space:nowrap}
+.titulo-secao i{flex:1;height:1px;background:var(--linha)}
+.premios{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
 .premio{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);
-padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
-.premio .ico{width:34px;height:34px;border-radius:50%;flex:none;display:flex;
-align-items:center;justify-content:center;font-size:16px}
-.premio.h .ico{background:#e7edf7;color:#2f4f86}
-.premio.m .ico{background:var(--rosa-claro);color:var(--rosa)}
-.premio .rot{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-color:var(--suave)}
-.premio .txt{font-weight:600;margin-top:2px}
+overflow:hidden;box-shadow:var(--sombra);display:flex;flex-direction:column}
+.premio .foto{position:relative;aspect-ratio:1;background:var(--rosa-fundo)}
+.premio.h .foto{background:#e7edf7}
+.premio .foto img{width:100%;height:100%;object-fit:cover}
+.premio .selo{position:absolute;left:8px;top:8px;background:rgba(255,252,250,.93);
+border-radius:100px;padding:4px 10px;font-size:10.5px;font-weight:700;letter-spacing:.05em;
+text-transform:uppercase;backdrop-filter:blur(4px)}
+.premio.h .selo{color:#2f4f86}
+.premio.m .selo{color:var(--rosa)}
+.premio .info{padding:11px 12px 13px}
+.premio .rot{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--suave)}
+.premio .txt{font-weight:600;margin-top:3px;font-size:14.5px;line-height:1.3}
+.premio .semfoto{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+font-size:34px}
+.premio.h .semfoto{color:#2f4f86}
+.premio.m .semfoto{color:var(--rosa)}
 
 /* --- mapa --- */
-h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:27px;font-weight:600;
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;
 text-align:center;margin-bottom:4px}
-.sub{text-align:center;font-size:13.5px;color:var(--suave);margin-bottom:16px}
+.sub{text-align:center;font-size:13.5px;color:var(--suave);margin-bottom:14px}
 
-.legenda{display:flex;gap:14px;justify-content:center;margin-bottom:14px;
-font-size:12px;color:var(--suave);flex-wrap:wrap}
-.legenda span{display:flex;align-items:center;gap:5px}
-.bolinha{width:11px;height:11px;border-radius:3px;display:inline-block}
+.atalhos{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.atalho{border:1px solid var(--rosa-borda);background:var(--papel);color:var(--rosa);
+border-radius:100px;padding:8px 14px;font-size:13px;font-weight:700}
+.atalho:active{background:var(--rosa-fundo)}
+.atalho.limpar{border-color:var(--linha);color:var(--suave)}
+
+.legenda{display:flex;gap:8px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+.legenda span{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--suave);
+background:var(--papel);border:1px solid var(--linha);border-radius:100px;padding:5px 11px}
+.bolinha{width:10px;height:10px;border-radius:3px;display:inline-block}
 .bolinha.livre{background:var(--papel);border:1.5px solid var(--rosa-borda)}
 .bolinha.aguard{background:var(--ambar-claro);border:1.5px solid #e8cfa4}
 .bolinha.pago{background:var(--verde-claro);border:1.5px solid #b7dcc6}
 
-.mapa{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px;
-margin-bottom:24px}
-.n{aspect-ratio:1;border-radius:9px;font-size:13px;font-weight:700;
+.mapa{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:7px;margin-bottom:26px}
+.n{aspect-ratio:1;border-radius:11px;font-size:13.5px;font-weight:700;
 background:var(--papel);border:1.5px solid var(--rosa-borda);color:var(--rosa);
-display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
-.n:active{transform:scale(.94)}
+display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;
+transition:transform .12s ease, background .12s ease, box-shadow .12s ease}
+.n:active{transform:scale(.92)}
 .n.aguard{background:var(--ambar-claro);border-color:#e8cfa4;color:var(--ambar);cursor:not-allowed}
 .n.pago{background:var(--verde-claro);border-color:#b7dcc6;color:var(--verde);cursor:not-allowed}
-.n.escolhido{background:var(--rosa);border-color:var(--rosa);color:#fff}
+.n.escolhido{background:var(--rosa);border-color:var(--rosa);color:#fff;
+box-shadow:0 8px 18px -8px rgba(180,60,110,.85);transform:translateY(-1px)}
 
-.rodape{text-align:center;font-size:13px;color:var(--suave);padding-top:8px;
+.rodape{text-align:center;font-size:13px;color:var(--suave);padding-top:14px;
 border-top:1px solid var(--linha);margin-top:6px}
 .rodape a{color:var(--rosa);font-weight:600;text-decoration:none}
 .carregando{text-align:center;padding:40px;color:var(--suave)}
 
+/* --- barra de seleção --- */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:18;max-width:560px;margin:0 auto;
+padding:11px 14px calc(11px + env(safe-area-inset-bottom));
+background:rgba(255,252,250,.96);backdrop-filter:blur(10px);
+border-top:1px solid var(--linha);box-shadow:0 -8px 26px -18px rgba(140,90,80,.7);
+display:flex;align-items:center;gap:12px;
+transform:translateY(140%);transition:transform .26s cubic-bezier(.32,.72,0,1)}
+.barra.on{transform:translateY(0)}
+.barra .conta{flex:1;min-width:0}
+.barra .conta b{display:block;font-size:14.5px;font-weight:700;line-height:1.25}
+.barra .conta small{font-size:12px;color:var(--suave)}
+.barra .btn{flex:none;padding:14px 20px}
+
 /* --- folha --- */
-.fundo{position:fixed;inset:0;background:rgba(61,43,40,.45);opacity:0;pointer-events:none;
+.fundo{position:fixed;inset:0;background:rgba(61,43,40,.48);opacity:0;pointer-events:none;
 transition:.2s;z-index:20}
 .fundo.on{opacity:1;pointer-events:auto}
 .folha{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--papel);
-border-radius:20px 20px 0 0;transform:translateY(102%);
+border-radius:22px 22px 0 0;transform:translateY(102%);
 transition:transform .26s cubic-bezier(.32,.72,0,1);max-height:92%;
-display:flex;flex-direction:column;max-width:560px;margin:0 auto}
+display:flex;flex-direction:column;max-width:560px;margin:0 auto;
+box-shadow:0 -20px 50px -30px rgba(90,50,45,.8)}
 .folha.on{transform:translateY(0)}
-.puxador{width:36px;height:4px;background:var(--linha);border-radius:9px;margin:10px auto 0;flex:none}
-.folha .corpo{overflow-y:auto;padding:18px 20px 8px}
+.puxador{width:38px;height:4px;background:var(--linha);border-radius:9px;margin:10px auto 0;flex:none}
+.folha .corpo{overflow-y:auto;padding:16px 20px 8px;-webkit-overflow-scrolling:touch}
 .folha .pe{flex:none;padding:12px 20px calc(16px + env(safe-area-inset-bottom));
 border-top:1px solid var(--linha);display:flex;gap:9px}
-.folha h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;
-text-align:center}
-.folha .numero-escolhido{text-align:center;font-size:40px;font-weight:700;color:var(--rosa);
-line-height:1;margin:6px 0 14px;font-variant-numeric:tabular-nums}
+.folha h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;text-align:center}
+
+.fichas{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.ficha{background:var(--rosa);color:#fff;border-radius:10px;font-weight:700;font-size:14px;
+padding:8px 10px;display:flex;align-items:center;gap:7px;font-variant-numeric:tabular-nums}
+.ficha b{font-weight:700}
+.ficha .x{opacity:.75;font-size:15px;line-height:1}
+.ficha.unica{padding:10px 14px;font-size:17px}
+.resumo{text-align:center;font-size:13px;color:var(--suave);margin:8px 0 16px}
+.resumo b{color:var(--tinta);font-size:15px}
 
 .campo{margin-bottom:13px}
 .campo label{display:block;font-size:11.5px;font-weight:700;color:var(--suave);
@@ -144,23 +187,24 @@ margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
 font-size:16px;background:var(--creme);color:var(--tinta)}
 .campo input:focus{outline:none;border-color:var(--rosa);background:#fff}
 
-.btn{flex:1;padding:15px;border-radius:11px;font-size:15px;font-weight:700;text-align:center}
-.btn.principal{background:var(--rosa);color:#fff}
-.btn.principal:active{background:#bb4570}
+.btn{flex:1;padding:15px;border-radius:12px;font-size:15px;font-weight:700;text-align:center;
+transition:background .15s ease}
+.btn:disabled{opacity:.65}
+.btn.principal{background:var(--rosa);color:#fff;box-shadow:0 10px 22px -14px rgba(180,60,110,.95)}
+.btn.principal:active{background:var(--rosa-escuro)}
 .btn.neutro{background:var(--creme);color:var(--suave);border:1px solid var(--linha)}
 .btn.zap{background:var(--verde);color:#fff}
 
-.pix{background:var(--rosa-claro);border:1px solid var(--rosa-borda);border-radius:var(--raio);
+.pix{background:var(--rosa-fundo);border:1px solid var(--rosa-borda);border-radius:var(--raio);
 padding:16px;text-align:center;margin-bottom:14px}
 .pix .rot{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
 color:var(--rosa);margin-bottom:6px}
-.pix .chave{font-size:23px;font-weight:700;letter-spacing:.01em;word-break:break-all}
+.pix .chave{font-size:23px;font-weight:700;word-break:break-all}
 .pix .titular{font-size:12.5px;color:var(--suave);margin-top:5px}
 .pix .valor{font-size:14px;font-weight:700;margin-top:8px}
 
 .passos{counter-reset:p;margin:4px 0 14px}
-.passos li{list-style:none;position:relative;padding-left:32px;margin-bottom:11px;
-font-size:14px}
+.passos li{list-style:none;position:relative;padding-left:32px;margin-bottom:11px;font-size:14px}
 .passos li::before{counter-increment:p;content:counter(p);position:absolute;left:0;top:0;
 width:22px;height:22px;border-radius:50%;background:var(--rosa);color:#fff;
 font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
@@ -168,12 +212,15 @@ font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:c
 padding:11px 13px;font-size:12.5px;color:var(--ambar);margin-bottom:12px;font-weight:500}
 .erro{background:#fdecea;border:1px solid #f3cbc6;border-radius:11px;padding:11px 13px;
 font-size:13px;color:#b3261e;margin-bottom:12px;font-weight:500}
-.escondido{display:none}
+.dica{font-size:12.5px;color:var(--suave);margin-top:10px}
+
 .toast{position:fixed;left:16px;right:16px;bottom:18px;z-index:30;background:var(--tinta);
-color:#fff;padding:13px 16px;border-radius:11px;font-size:14px;font-weight:600;text-align:center;
+color:#fff;padding:13px 16px;border-radius:12px;font-size:14px;font-weight:600;text-align:center;
 opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;max-width:528px;margin:0 auto}
 .toast.on{opacity:1;transform:translateY(0)}
+body.com-barra .toast{bottom:96px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:359px){.mapa{grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px}}
 </style>
 </head>
 <body>
@@ -202,6 +249,11 @@ opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;max-widt
   <div id="conteudo" class="carregando">Carregando os números…</div>
 </div>
 
+<div class="barra" id="barra">
+  <div class="conta"><b id="barraTitulo">1 número</b><small id="barraSub">R$ 10</small></div>
+  <button class="btn principal" data-continuar>Continuar</button>
+</div>
+
 <div class="fundo" id="fundo"></div>
 <section class="folha" id="folha" role="dialog" aria-modal="true">
   <div class="puxador"></div>
@@ -214,10 +266,15 @@ opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;max-widt
 (function(){
 'use strict';
 var API=new URLSearchParams(location.search).get('api')||null;
-var CFG={},NUMS={},escolhido=null,reserva=null;
+var CFG={},NUMS={},TOTAL=200,MAXSEL=20;
+var sel=[];                 /* números escolhidos, em ordem de toque */
+var reservas=[];            /* reservas confirmadas nesta compra */
 var $=function(i){return document.getElementById(i)};
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
 return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function valor(){return Number(CFG.valor||10)}
+function moeda(v){return 'R$ '+String(v).replace('.',',')}
+function plural(n,a,b){return n+' '+(n===1?a:b)}
 
 function api(rota,extra){
   if(!API) return Promise.reject(new Error('Página não configurada'));
@@ -231,17 +288,36 @@ function api(rota,extra){
 var tt;function avisar(m){var t=$('toast');t.textContent=m;t.classList.add('on');
   clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},3000)}
 
+/* ---------- carregar ---------- */
 function carregar(){
-  api('mapa').then(function(r){
+  return api('mapa').then(function(r){
     if(!r||!r.ok) throw new Error('Não consegui carregar');
     CFG=r.config||{};
+    TOTAL=Number(CFG.total||200);
     NUMS={};(r.numeros||[]).forEach(function(x){NUMS[x.numero]=x});
+    /* solta da seleção qualquer número que alguém pegou enquanto a pessoa escolhia */
+    sel=sel.filter(function(n){return !NUMS[n]});
     pintar(r);
-  }).catch(function(e){
+    barra();
+  }).catch(function(){
     $('conteudo').className='';
     $('conteudo').innerHTML='<div class="erro">Não consegui carregar a rifa agora. '+
       'Recarregue a página em instantes.</div>';
   });
+}
+
+function cartaoPremio(classe,selo,rot,texto,foto,icone){
+  if(!texto) return '';
+  var f=(foto||'').trim();
+  return '<div class="premio '+classe+'">'+
+    '<div class="foto">'+
+      '<span class="semfoto">'+icone+'</span>'+
+      (f?'<img src="'+esc(f)+'" alt="'+esc(texto)+'" loading="lazy" '+
+         'onerror="this.remove()">':'')+
+      '<span class="selo">'+selo+'</span>'+
+    '</div>'+
+    '<div class="info"><div class="rot">'+rot+'</div>'+
+    '<div class="txt">'+esc(texto)+'</div></div></div>';
 }
 
 function pintar(r){
@@ -259,39 +335,51 @@ function pintar(r){
   }
 
   $('tagline').textContent=CFG.texto||'';
-  $('para').textContent='Apenas R$ '+(CFG.valor||10);
+  $('para').innerHTML='&#10084; Cada número, '+moeda(valor());
   $('para').classList.remove('escondido');
 
-  var total=Number(CFG.total||200);
-  var pct=Math.round((r.vendidos/total)*100);
-
+  var pct=Math.round((r.vendidos/TOTAL)*100);
+  var livres=TOTAL-r.vendidos;
   var h='';
 
-  h+='<div class="progresso"><div class="top"><span><b>'+r.vendidos+'</b> de '+total+' números</span>'+
-     '<span>'+pct+'%</span></div><div class="trilho"><i id="barra"></i></div></div>';
+  h+='<div class="progresso"><div class="top">'+
+     '<span><b>'+r.vendidos+'</b> de '+TOTAL+' números</span><span>'+pct+'%</span></div>'+
+     '<div class="trilho"><i id="barraProg"></i></div></div>';
 
-  h+='<div class="premios">'+
-     '<div class="premio h"><div class="ico">♂</div><div><div class="rot">Se homem ganhar</div>'+
-     '<div class="txt">'+esc(CFG.premioHomem||'')+'</div></div></div>'+
-     '<div class="premio m"><div class="ico">♀</div><div><div class="rot">Se mulher ganhar</div>'+
-     '<div class="txt">'+esc(CFG.premioMulher||'')+'</div></div></div></div>';
+  var pH=cartaoPremio('h','Ele','Se homem ganhar',CFG.premioHomem,
+        CFG.fotoPremioHomem||'premio-h.jpg','&#9794;');
+  var pM=cartaoPremio('m','Ela','Se mulher ganhar',CFG.premioMulher,
+        CFG.fotoPremioMulher||'premio-m.jpg','&#9792;');
+  if(pH||pM){
+    h+='<div class="titulo-secao"><span>O prêmio</span><i></i></div>';
+    h+='<div class="premios">'+pH+pM+'</div>';
+  }
 
-  h+='<h2>Escolha seu número</h2>';
-  h+='<p class="sub">'+(CFG.aberta===false?'Rifa encerrada — obrigado a todos 💗'
-     :'Toque num número livre para reservar')+'</p>';
+  h+='<h2 class="serif">Escolha seus números</h2>';
+  h+='<p class="sub">'+(CFG.aberta===false?'Rifa encerrada — obrigado a todos &#128151;'
+     :'Toque em quantos quiser. Você preenche seus dados uma vez só.')+'</p>';
+
+  if(CFG.aberta!==false && livres>0){
+    h+='<div class="atalhos">'+
+       '<button class="atalho" data-sorte="1">Escolher 1 pra mim</button>'+
+       (livres>=3?'<button class="atalho" data-sorte="3">+3</button>':'')+
+       (livres>=5?'<button class="atalho" data-sorte="5">+5</button>':'')+
+       '<button class="atalho limpar escondido" id="btnLimpar" data-limpar>Limpar</button>'+
+       '</div>';
+  }
 
   h+='<div class="legenda">'+
      '<span><i class="bolinha livre"></i> livre</span>'+
      '<span><i class="bolinha aguard"></i> aguardando pagamento</span>'+
      '<span><i class="bolinha pago"></i> pago</span></div>';
 
-  h+='<div class="mapa">';
-  for(var i=1;i<=total;i++){
+  h+='<div class="mapa" id="mapa">';
+  for(var i=1;i<=TOTAL;i++){
     var x=NUMS[i];
-    var cls=x?(x.status==='pago'?'pago':'aguard'):'';
+    var cls=x?(x.status==='pago'?'pago':'aguard'):(sel.indexOf(i)>=0?'escolhido':'');
     var tit=x?(x.status==='pago'?('Pago — '+esc(x.nome)):'Aguardando pagamento'):'Livre';
     h+='<button class="n '+cls+'" data-n="'+i+'" title="'+tit+'" '+
-       (x?'disabled aria-disabled="true"':'')+'>'+i+'</button>';
+       (x?'disabled aria-disabled="true"':'aria-pressed="'+(sel.indexOf(i)>=0)+'"')+'>'+i+'</button>';
   }
   h+='</div>';
 
@@ -305,7 +393,54 @@ function pintar(r){
 
   $('conteudo').className='';
   $('conteudo').innerHTML=h;
-  setTimeout(function(){var b=$('barra');if(b)b.style.width=pct+'%'},80);
+  setTimeout(function(){var b=$('barraProg');if(b)b.style.width=pct+'%'},80);
+}
+
+/* ---------- seleção ---------- */
+function ordenados(){return sel.slice().sort(function(a,b){return a-b})}
+
+function marcar(n,ligado){
+  var b=document.querySelector('.n[data-n="'+n+'"]');
+  if(b){b.classList.toggle('escolhido',ligado);b.setAttribute('aria-pressed',ligado)}
+}
+
+function alternar(n){
+  var i=sel.indexOf(n);
+  if(i>=0){sel.splice(i,1);marcar(n,false)}
+  else{
+    if(sel.length>=MAXSEL) return avisar('Dá pra reservar até '+MAXSEL+' números por vez');
+    sel.push(n);marcar(n,true);
+  }
+  barra();
+}
+
+function sortear(qtd){
+  var livres=[];
+  for(var i=1;i<=TOTAL;i++) if(!NUMS[i] && sel.indexOf(i)<0) livres.push(i);
+  if(!livres.length) return avisar('Não sobrou número livre');
+  var pegou=0;
+  for(var k=0;k<qtd && livres.length && sel.length<MAXSEL;k++){
+    var j=Math.floor(Math.random()*livres.length);
+    var n=livres.splice(j,1)[0];
+    sel.push(n);marcar(n,true);pegou++;
+  }
+  barra();
+  if(pegou) avisar(pegou===1?('Número '+sel[sel.length-1]+' separado pra você')
+                            :(pegou+' números separados pra você'));
+}
+
+function limpar(){
+  sel.slice().forEach(function(n){marcar(n,false)});
+  sel=[];barra();
+}
+
+function barra(){
+  var b=$('barra'),lim=$('btnLimpar');
+  if(lim) lim.classList.toggle('escondido',sel.length===0);
+  if(!sel.length){b.classList.remove('on');document.body.classList.remove('com-barra');return}
+  $('barraTitulo').textContent=plural(sel.length,'número escolhido','números escolhidos');
+  $('barraSub').textContent=ordenados().join(', ')+'  ·  '+moeda(sel.length*valor());
+  b.classList.add('on');document.body.classList.add('com-barra');
 }
 
 /* ---------- folha ---------- */
@@ -314,10 +449,24 @@ function abrir(corpo,pe){$('folhaCorpo').innerHTML=corpo;$('folhaPe').innerHTML=
 function fechar(){$('folha').classList.remove('on');$('fundo').classList.remove('on')}
 $('fundo').addEventListener('click',fechar);
 
-function formulario(n){
-  escolhido=n;
+function fichas(lista,removivel){
+  var uni=lista.length===1?' unica':'';
+  return '<div class="fichas">'+lista.map(function(n){
+    return '<'+(removivel?'button':'span')+' class="ficha'+uni+'"'+
+      (removivel?' data-tirar="'+n+'" title="Tirar o '+n+'"':'')+'>'+
+      '<b>'+n+'</b>'+(removivel?'<span class="x">&times;</span>':'')+
+      '</'+(removivel?'button':'span')+'>';
+  }).join('')+'</div>';
+}
+
+function formulario(){
+  if(!sel.length) return;
+  var lista=ordenados();
   abrir(
-    '<h3 class="serif">Você escolheu</h3><div class="numero-escolhido">'+n+'</div>'+
+    '<h3 class="serif">'+(lista.length===1?'Você escolheu':'Seus números')+'</h3>'+
+    '<div id="areaFichas">'+fichas(lista,true)+
+      '<p class="resumo">'+plural(lista.length,'número','números')+
+      ' &times; '+moeda(valor())+' = <b>'+moeda(lista.length*valor())+'</b></p></div>'+
     '<div id="erroForm"></div>'+
     '<div class="campo"><label>Seu nome completo</label>'+
       '<input id="fNome" autocomplete="name" placeholder="Maria Silva"></div>'+
@@ -325,44 +474,114 @@ function formulario(n){
       '<input id="fFone" inputmode="tel" autocomplete="tel" placeholder="21 99999-9999"></div>'+
     '<div class="campo"><label>E-mail</label>'+
       '<input id="fMail" type="email" inputmode="email" autocomplete="email" placeholder="maria@email.com"></div>'+
-    '<p style="font-size:12.5px;color:var(--suave);margin-top:10px">'+
-      'Seus dados servem só para te avisarmos caso você ganhe. O número fica reservado por '+
+    '<p class="dica">Você preenche uma vez só — vale para todos os números escolhidos. '+
+      'Seus dados servem só para te avisarmos caso você ganhe, e a reserva vale por '+
       (CFG.minutosReserva||60)+' minutos até o pagamento.</p>',
     '<button class="btn neutro" data-fechar>Voltar</button>'+
-    '<button class="btn principal" data-reservar>Reservar número</button>');
-  setTimeout(function(){$('fNome').focus()},250);
+    '<button class="btn principal" data-reservar>Reservar</button>');
+  atualizarBotaoReservar();
+  setTimeout(function(){var c=$('fNome');if(c)c.focus()},250);
 }
 
-function pagamento(r){
-  reserva=r;
+function atualizarBotaoReservar(){
+  var b=document.querySelector('[data-reservar]');
+  if(b) b.textContent=sel.length===1?'Reservar número':('Reservar '+sel.length+' números');
+}
+
+/* reserva um número de cada vez — o servidor guarda tudo num estado só,
+   então mandar em paralelo poderia embaralhar as reservas */
+function reservarTodos(dados,btn){
+  var lista=ordenados(),feitas=[],falhas=[];
+  return lista.reduce(function(fila,n,idx){
+    return fila.then(function(){
+      btn.textContent='Reservando '+(idx+1)+' de '+lista.length+'…';
+      return api('reservar',{numero:n,nome:dados.nome,telefone:dados.fone,email:dados.mail})
+        .then(function(r){ if(r&&r.ok) feitas.push(r); else falhas.push(n) })
+        .catch(function(){ falhas.push(n) });
+    });
+  },Promise.resolve()).then(function(){return {feitas:feitas,falhas:falhas}});
+}
+
+function linkZap(){
+  /* monta uma mensagem só, com todos os números, a partir do link que o servidor devolveu */
+  if(!reservas.length) return null;
+  var base=reservas[reservas.length-1].whatsapp||'';
+  var fone=(base.match(/(?:wa\.me\/|phone=)(\d+)/)||[])[1];
+  if(!fone) return base||null;
+  var nums=reservas.map(function(r){return r.numero}).sort(function(a,b){return a-b});
+  var txt='Oi! Acabei de fazer o PIX de '+moeda(nums.length*valor())+
+    ' da rifa, '+(nums.length===1?'do número ':'dos números ')+nums.join(', ')+
+    '. Segue o comprovante 💗';
+  return 'https://wa.me/'+fone+'?text='+encodeURIComponent(txt);
+}
+
+function pagamento(res){
+  reservas=res.feitas;
+  var nums=reservas.map(function(r){return r.numero}).sort(function(a,b){return a-b});
+  var total=nums.length*valor();
+  var aviso='';
+  if(res.falhas.length){
+    aviso='<div class="erro">'+(res.falhas.length===1
+        ?('O número '+res.falhas[0]+' foi reservado por outra pessoa antes de você. ')
+        :('Os números '+res.falhas.join(', ')+' foram reservados por outras pessoas antes de você. '))+
+      (nums.length?'O restante ficou com você.':'Escolha outros e tente de novo.')+'</div>';
+  }
+  if(!nums.length){
+    abrir('<h3 class="serif">Não deu dessa vez</h3>'+aviso,
+      '<button class="btn principal" data-fechar>Escolher outros</button>');
+    limpar();carregar();return;
+  }
   abrir(
     '<h3 class="serif">Falta só o pagamento</h3>'+
-    '<div class="numero-escolhido">'+r.numero+'</div>'+
+    aviso+
+    fichas(nums,false)+
+    '<p class="resumo">'+plural(nums.length,'número reservado','números reservados')+'</p>'+
     '<div class="pix"><div class="rot">Chave PIX</div>'+
       '<div class="chave" id="pixChave">'+esc(CFG.pixChave||'')+'</div>'+
       (CFG.pixTitular?'<div class="titular">'+esc(CFG.pixTitular)+'</div>':'')+
-      '<div class="valor">Valor: R$ '+(CFG.valor||10)+'</div></div>'+
+      '<div class="valor">Valor total: '+moeda(total)+'</div></div>'+
     '<ol class="passos">'+
-      '<li>Copie a chave e faça o PIX de R$ '+(CFG.valor||10)+'</li>'+
+      '<li>Copie a chave e faça <b>um PIX só</b>, de '+moeda(total)+'</li>'+
       '<li>Tire o print do comprovante</li>'+
       '<li>Toque no botão verde e envie o print — a mensagem já vai pronta</li>'+
     '</ol>'+
-    '<div class="alerta">Seu número fica guardado por '+(CFG.minutosReserva||60)+
-      ' minutos. Sem o comprovante, ele volta a ficar livre.</div>',
+    '<div class="alerta">'+(nums.length===1?'Seu número fica guardado':'Seus números ficam guardados')+
+      ' por '+(CFG.minutosReserva||60)+' minutos. Sem o comprovante, '+
+      (nums.length===1?'ele volta':'eles voltam')+' a ficar livre.</div>',
     '<button class="btn neutro" data-copiar>Copiar chave</button>'+
     '<button class="btn zap" data-zap>Enviar comprovante</button>');
+  limpar();carregar();
 }
 
+/* ---------- cliques ---------- */
 document.addEventListener('click',function(e){
-  var b=e.target.closest('[data-n],[data-fechar],[data-reservar],[data-copiar],[data-zap]');
+  var b=e.target.closest('[data-n],[data-sorte],[data-limpar],[data-continuar],[data-tirar],'+
+    '[data-fechar],[data-reservar],[data-copiar],[data-zap]');
   if(!b)return;
 
   if(b.hasAttribute('data-n')){
     if(b.disabled)return;
     if(CFG.aberta===false)return avisar('A rifa já foi encerrada');
-    return formulario(Number(b.getAttribute('data-n')));
+    return alternar(Number(b.getAttribute('data-n')));
   }
+  if(b.hasAttribute('data-sorte')){
+    if(CFG.aberta===false)return avisar('A rifa já foi encerrada');
+    return sortear(Number(b.getAttribute('data-sorte')));
+  }
+  if(b.hasAttribute('data-limpar')) return limpar();
+  if(b.hasAttribute('data-continuar')) return formulario();
   if(b.hasAttribute('data-fechar')) return fechar();
+
+  if(b.hasAttribute('data-tirar')){
+    alternar(Number(b.getAttribute('data-tirar')));
+    if(!sel.length){fechar();return}
+    var lista=ordenados();
+    $('areaFichas').innerHTML=fichas(lista,true)+
+      '<p class="resumo">'+plural(lista.length,'número','números')+
+      ' &times; '+moeda(valor())+' = <b>'+moeda(lista.length*valor())+'</b></p>';
+    atualizarBotaoReservar();
+    return;
+  }
 
   if(b.hasAttribute('data-reservar')){
     var nome=$('fNome').value.trim(),fone=$('fFone').value.trim(),mail=$('fMail').value.trim();
@@ -371,16 +590,13 @@ document.addEventListener('click',function(e){
     if(fone.replace(/\D/g,'').length<10){er.innerHTML='<div class="erro">Telefone incompleto — não esqueça o DDD.</div>';return}
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){er.innerHTML='<div class="erro">E-mail inválido.</div>';return}
     er.innerHTML='';
-    b.textContent='Reservando…';b.disabled=true;
-    api('reservar',{numero:escolhido,nome:nome,telefone:fone,email:mail}).then(function(r){
-      if(!r||!r.ok){
-        b.textContent='Reservar número';b.disabled=false;
-        er.innerHTML='<div class="erro">'+esc((r&&r.erro)||'Não consegui reservar.')+'</div>';
-        carregar();return;
-      }
-      pagamento(r);carregar();
+    b.disabled=true;
+    var voltar=document.querySelector('[data-fechar]');if(voltar)voltar.disabled=true;
+    reservarTodos({nome:nome,fone:fone,mail:mail},b).then(function(res){
+      pagamento(res);
     }).catch(function(){
-      b.textContent='Reservar número';b.disabled=false;
+      b.disabled=false;atualizarBotaoReservar();
+      if(voltar)voltar.disabled=false;
       er.innerHTML='<div class="erro">Falha de conexão. Tente de novo.</div>';
     });
     return;
@@ -394,7 +610,8 @@ document.addEventListener('click',function(e){
   }
 
   if(b.hasAttribute('data-zap')){
-    if(reserva&&reserva.whatsapp) window.open(reserva.whatsapp,'_blank');
+    var l=linkZap();
+    if(l) window.open(l,'_blank');
     fechar();
     return;
   }
