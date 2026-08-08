@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rifa — Painel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--creme:#fdf6f0;--papel:#fffcfa;--tinta:#3d2b28;--suave:#8a7370;--rosa:#d4507e;
+--rosa-claro:#fce8ef;--rosa-borda:#f5c9d9;--verde:#2f8f5b;--verde-claro:#e6f4ec;
+--ambar:#b5751a;--ambar-claro:#fdf1de;--vermelho:#b3261e;--vermelho-claro:#fdecea;
+--linha:#efe2da;--raio:13px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Karla',system-ui,sans-serif;background:var(--creme);color:var(--tinta);
+font-size:15px;line-height:1.5;padding:22px 14px 70px}
+button,input,select{font-family:inherit}
+button{cursor:pointer;border:none;background:none;color:inherit}
+button:focus-visible,input:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
+
+header{text-align:center;margin-bottom:20px}
+h1{font-size:32px;line-height:1}
+h1 em{font-style:italic;color:var(--rosa)}
+.sub{font-size:12px;color:var(--suave);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+.bloco{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);
+padding:17px;margin-bottom:14px}
+.bloco h2{font-size:15px;font-weight:700;margin-bottom:13px}
+
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:11px}
+.campo label{display:block;font-size:11px;font-weight:700;color:var(--suave);margin-bottom:4px;
+text-transform:uppercase;letter-spacing:.05em}
+.campo input,.campo select{width:100%;padding:10px;border:1.5px solid var(--linha);
+border-radius:10px;font-size:15px;background:var(--creme);color:var(--tinta)}
+.campo input:focus,.campo select:focus{outline:none;border-color:var(--rosa);background:#fff}
+.campo.largo{grid-column:1/-1}
+.campo .dica{font-size:11px;color:var(--suave);margin-top:3px}
+
+.btn{padding:12px 16px;border-radius:10px;font-size:14px;font-weight:700}
+.btn.principal{background:var(--rosa);color:#fff}
+.btn.neutro{background:var(--creme);color:var(--suave);border:1px solid var(--linha)}
+.btn.verde{background:var(--verde);color:#fff}
+.linha-btn{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+
+.placar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.cartao{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);
+padding:12px 10px;text-align:center}
+.cartao b{display:block;font-size:24px;font-weight:700;line-height:1.1}
+.cartao span{font-size:10.5px;color:var(--suave);text-transform:uppercase;letter-spacing:.05em}
+.cartao.destaque{background:var(--rosa-claro);border-color:var(--rosa-borda)}
+.cartao.destaque b{color:var(--rosa)}
+
+.filtros{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.chip{font-size:12.5px;font-weight:600;padding:7px 13px;border:1px solid var(--linha);
+border-radius:100px;background:var(--papel);color:var(--suave)}
+.chip[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+
+.reserva{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);
+padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start}
+.reserva.pago{border-color:#b7dcc6;background:var(--verde-claro)}
+.reserva .num{font-size:22px;font-weight:700;min-width:44px;text-align:center;
+font-variant-numeric:tabular-nums;color:var(--rosa)}
+.reserva.pago .num{color:var(--verde)}
+.reserva .info{flex:1;min-width:0}
+.reserva .nome{font-weight:700}
+.reserva .dado{font-size:12.5px;color:var(--suave);word-break:break-all}
+.reserva .acao{display:flex;flex-direction:column;gap:6px}
+.reserva .acao button{font-size:12px;font-weight:700;padding:7px 11px;border-radius:8px;white-space:nowrap}
+.b-ok{background:var(--verde);color:#fff}
+.b-desfaz{background:var(--creme);color:var(--suave);border:1px solid var(--linha)}
+.b-lib{background:var(--vermelho-claro);color:var(--vermelho)}
+.tag{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 6px;border-radius:4px;
+text-transform:uppercase;letter-spacing:.04em;margin-left:6px}
+.tag.ag{background:var(--ambar-claro);color:var(--ambar)}
+.tag.pg{background:var(--verde-claro);color:var(--verde)}
+
+.aviso{padding:12px 14px;border-radius:var(--raio);font-size:13.5px;margin-bottom:13px;font-weight:500}
+.aviso.erro{background:var(--vermelho-claro);color:var(--vermelho);border:1px solid #f3cbc6}
+.aviso.ok{background:var(--verde-claro);color:var(--verde);border:1px solid #b7dcc6}
+.escondido{display:none}
+.vazio{text-align:center;padding:26px;color:var(--suave);font-size:13.5px}
+
+.ganhador{background:var(--rosa-claro);border:2px solid var(--rosa);border-radius:var(--raio);
+padding:20px;text-align:center;margin-top:12px}
+.ganhador .n{font-size:52px;font-weight:700;color:var(--rosa);line-height:1}
+.ganhador .nome{font-size:20px;font-weight:700;margin-top:6px}
+.ganhador .dado{font-size:13px;color:var(--suave);margin-top:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1 class="serif">Rifa <em>Solidária</em></h1>
+  <div class="sub">painel de controle</div>
+</header>
+
+<div id="alerta" class="aviso escondido"></div>
+
+<section class="bloco">
+  <h2>Entrar</h2>
+  <div class="grade">
+    <div class="campo largo"><label>Endereço do servidor</label>
+      <input id="api" placeholder="https://webhook.../webhook/rifa"></div>
+    <div class="campo largo"><label>Senha</label>
+      <input id="key" type="password" placeholder="senha do painel"></div>
+  </div>
+  <div class="linha-btn"><button class="btn principal" id="btnEntrar">Entrar</button></div>
+</section>
+
+<div id="area" class="escondido">
+
+  <div class="placar" id="placar"></div>
+
+  <section class="bloco">
+    <h2>Reservas</h2>
+    <div class="filtros" id="filtros">
+      <button class="chip" data-f="aguardando" aria-pressed="true">Aguardando pagamento</button>
+      <button class="chip" data-f="pago" aria-pressed="false">Pagos</button>
+      <button class="chip" data-f="todos" aria-pressed="false">Todos</button>
+    </div>
+    <div id="lista"></div>
+    <div class="linha-btn"><button class="btn neutro" id="btnAtualizar">Atualizar lista</button></div>
+  </section>
+
+  <section class="bloco">
+    <h2>Sorteio</h2>
+    <p style="font-size:13.5px;color:var(--suave);margin-bottom:6px">
+      Sorteia entre os números <b>pagos</b>. Pode rodar ao vivo — todo mundo vê o resultado na hora.</p>
+    <div class="linha-btn"><button class="btn verde" id="btnSortear">Sortear agora</button></div>
+    <div id="resultado"></div>
+  </section>
+
+  <section class="bloco">
+    <h2>Configuração da rifa</h2>
+    <div class="grade">
+      <div class="campo"><label>Nome de quem está sendo ajudada</label><input id="cBenef"></div>
+      <div class="campo"><label>Instagram</label><input id="cInsta" placeholder="@perfil"></div>
+      <div class="campo largo"><label>Foto (arquivo ou link)</label><input id="cFoto" placeholder="foto.jpg">
+        <div class="dica">Deixe <b>foto.jpg</b> se o arquivo estiver na mesma pasta da página</div></div>
+      <div class="campo largo"><label>Frase de chamada</label><input id="cTexto"></div>
+      <div class="campo"><label>Valor por número (R$)</label><input id="cValor" inputmode="numeric"></div>
+      <div class="campo"><label>Quantidade de números</label><input id="cTotal" inputmode="numeric"></div>
+      <div class="campo"><label>Minutos de reserva</label><input id="cMin" inputmode="numeric">
+        <div class="dica">Sem comprovante nesse prazo, o número volta a ficar livre</div></div>
+      <div class="campo largo"><label>Prêmio se homem ganhar</label><input id="cPremioH"></div>
+      <div class="campo largo"><label>Prêmio se mulher ganhar</label><input id="cPremioM"></div>
+      <div class="campo"><label>Chave PIX</label><input id="cPix"></div>
+      <div class="campo"><label>Titular do PIX</label><input id="cTitular"></div>
+      <div class="campo"><label>WhatsApp que recebe</label><input id="cZap" placeholder="5521999999999">
+        <div class="dica">Com 55 e DDD, só números</div></div>
+      <div class="campo"><label>Data do sorteio</label><input id="cData" placeholder="20 de agosto"></div>
+      <div class="campo largo"><label>Como será sorteado</label><input id="cComo"></div>
+      <div class="campo"><label>Situação</label>
+        <select id="cAberta"><option value="1">Aberta</option><option value="0">Encerrada</option></select></div>
+    </div>
+    <div class="linha-btn"><button class="btn principal" id="btnSalvarCfg">Salvar configuração</button></div>
+  </section>
+
+  <section class="bloco">
+    <h2>Reserva manual</h2>
+    <p style="font-size:13.5px;color:var(--suave);margin-bottom:11px">
+      Para quem pagou por fora — em dinheiro, ou te chamou direto.</p>
+    <div class="grade">
+      <div class="campo"><label>Número</label><input id="mNum" inputmode="numeric"></div>
+      <div class="campo"><label>Nome</label><input id="mNome"></div>
+      <div class="campo"><label>Telefone</label><input id="mFone"></div>
+      <div class="campo"><label>E-mail</label><input id="mMail"></div>
+    </div>
+    <div class="linha-btn"><button class="btn principal" id="btnManual">Lançar como pago</button></div>
+  </section>
+
+</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $=function(i){return document.getElementById(i)};
+var filtro='aguardando',DADOS=null;
+var p=new URLSearchParams(location.search);
+if(p.get('api')) $('api').value=p.get('api');
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function alerta(t,m){var a=$('alerta');a.className='aviso '+t;a.textContent=m;
+  a.classList.remove('escondido');window.scrollTo({top:0,behavior:'smooth'});
+  if(t==='ok')setTimeout(function(){a.classList.add('escondido')},3500)}
+
+function chamar(acao,extra){
+  var api=$('api').value.trim(),key=$('key').value;
+  if(!api||!key){alerta('erro','Preencha o endereço e a senha');return Promise.reject()}
+  var c={rota:'admin',acao:acao,adminKey:key};
+  for(var k in extra)if(extra.hasOwnProperty(k))c[k]=extra[k];
+  return fetch(api,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(c)}).then(function(r){
+      if(!r.ok)throw new Error('Erro '+r.status);return r.json()});
+}
+
+function carregar(){
+  chamar('listar').then(function(r){
+    if(!r.ok){alerta('erro',r.erro||'Não consegui entrar');return}
+    DADOS=r;$('area').classList.remove('escondido');
+    $('alerta').classList.add('escondido');
+    placar(r.resumo);lista(r.reservas);config(r.config);
+  }).catch(function(e){if(e&&e.message)alerta('erro',e.message)});
+}
+
+function placar(s){
+  $('placar').innerHTML=
+   '<div class="cartao destaque"><b>R$ '+s.arrecadado+'</b><span>arrecadado</span></div>'+
+   '<div class="cartao"><b>'+s.pagos+'</b><span>pagos</span></div>'+
+   '<div class="cartao"><b>'+s.aguardando+'</b><span>aguardando</span></div>'+
+   '<div class="cartao"><b>'+s.livres+'</b><span>livres</span></div>';
+}
+
+function lista(rs){
+  var itens=rs.filter(function(x){return filtro==='todos'||x.status===filtro});
+  if(!itens.length){
+    $('lista').innerHTML='<div class="vazio">'+
+      (filtro==='aguardando'?'Nenhum pagamento pendente. Tudo em dia!':'Nada por aqui ainda.')+
+      '</div>';return;
+  }
+  $('lista').innerHTML=itens.map(function(x){
+    var pago=x.status==='pago';
+    return '<div class="reserva '+(pago?'pago':'')+'">'+
+      '<div class="num">'+x.numero+'</div><div class="info">'+
+      '<div class="nome">'+esc(x.nome)+
+        '<span class="tag '+(pago?'pg':'ag')+'">'+(pago?'pago':'aguardando')+'</span>'+
+        (x.manual?'<span class="tag ag">manual</span>':'')+'</div>'+
+      '<div class="dado">'+esc(x.telefone)+'</div>'+
+      '<div class="dado">'+esc(x.email)+'</div></div>'+
+      '<div class="acao">'+
+        (pago?'<button class="b-desfaz" data-a="reabrir" data-n="'+x.numero+'">Desfazer</button>'
+             :'<button class="b-ok" data-a="confirmar" data-n="'+x.numero+'">Confirmar</button>')+
+        '<button class="b-lib" data-a="liberar" data-n="'+x.numero+'" data-nome="'+esc(x.nome)+'">Liberar</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+function config(c){
+  $('cBenef').value=c.beneficiada||'';$('cInsta').value=c.instagram||'';
+  $('cFoto').value=c.foto||'foto.jpg';
+  $('cTexto').value=c.texto||'';$('cValor').value=c.valor||10;
+  $('cTotal').value=c.total||200;$('cMin').value=c.minutosReserva||60;
+  $('cPremioH').value=c.premioHomem||'';$('cPremioM').value=c.premioMulher||'';
+  $('cPix').value=c.pixChave||'';$('cTitular').value=c.pixTitular||'';
+  $('cZap').value=c.whatsapp||'';$('cData').value=c.dataSorteio||'';
+  $('cComo').value=c.comoSorteia||'';$('cAberta').value=(c.aberta===false?'0':'1');
+}
+
+$('btnEntrar').addEventListener('click',carregar);
+$('btnAtualizar').addEventListener('click',carregar);
+
+$('filtros').addEventListener('click',function(e){
+  var c=e.target.closest('.chip');if(!c)return;
+  [].forEach.call(this.querySelectorAll('.chip'),function(b){
+    b.setAttribute('aria-pressed',String(b===c))});
+  filtro=c.getAttribute('data-f');
+  if(DADOS)lista(DADOS.reservas);
+});
+
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-a]');if(!b)return;
+  var acao=b.getAttribute('data-a'),n=Number(b.getAttribute('data-n'));
+  if(acao==='liberar'){
+    if(!confirm('Liberar o número '+n+' de '+b.getAttribute('data-nome')+'?\n\n'+
+      'Ele volta a ficar disponível para outra pessoa.'))return;
+  }
+  b.disabled=true;
+  chamar(acao,{numero:n}).then(function(r){
+    if(!r.ok)return alerta('erro',r.erro||'Não consegui');
+    carregar();
+  }).catch(function(){b.disabled=false});
+});
+
+$('btnSalvarCfg').addEventListener('click',function(){
+  chamar('config',{config:{
+    beneficiada:$('cBenef').value.trim(),instagram:$('cInsta').value.trim(),
+    foto:$('cFoto').value.trim(),
+    texto:$('cTexto').value.trim(),valor:Number($('cValor').value)||10,
+    total:Number($('cTotal').value)||200,minutosReserva:Number($('cMin').value)||60,
+    premioHomem:$('cPremioH').value.trim(),premioMulher:$('cPremioM').value.trim(),
+    pixChave:$('cPix').value.trim(),pixTitular:$('cTitular').value.trim(),
+    whatsapp:$('cZap').value.replace(/\D/g,''),dataSorteio:$('cData').value.trim(),
+    comoSorteia:$('cComo').value.trim(),aberta:$('cAberta').value==='1'
+  }}).then(function(r){
+    if(!r.ok)return alerta('erro',r.erro||'Não consegui salvar');
+    alerta('ok','Configuração salva — a página da rifa já mudou');carregar();
+  }).catch(function(){});
+});
+
+$('btnManual').addEventListener('click',function(){
+  var n=Number($('mNum').value);
+  if(!n)return alerta('erro','Informe o número');
+  chamar('reservar',{numero:n,nome:$('mNome').value.trim()||'Reserva manual',
+    telefone:$('mFone').value.trim(),email:$('mMail').value.trim()}).then(function(r){
+    if(!r.ok)return alerta('erro',r.erro||'Não consegui');
+    $('mNum').value='';$('mNome').value='';$('mFone').value='';$('mMail').value='';
+    alerta('ok','Número '+n+' lançado como pago');carregar();
+  }).catch(function(){});
+});
+
+$('btnSortear').addEventListener('click',function(){
+  if(!confirm('Sortear agora entre os números pagos?'))return;
+  var b=this;b.disabled=true;b.textContent='Sorteando…';
+  chamar('sortear').then(function(r){
+    b.disabled=false;b.textContent='Sortear agora';
+    if(!r.ok)return alerta('erro',r.erro||'Não consegui sortear');
+    var g=r.ganhador;
+    $('resultado').innerHTML='<div class="ganhador"><div class="n">'+g.numero+'</div>'+
+      '<div class="nome">'+esc(g.nome)+'</div>'+
+      '<div class="dado">'+esc(g.telefone)+'</div>'+
+      '<div class="dado">'+esc(g.email)+'</div>'+
+      '<div class="dado" style="margin-top:8px">entre '+r.concorrentes+' números pagos</div></div>';
+  }).catch(function(){b.disabled=false;b.textContent='Sortear agora'});
+});
+})();
+</script>
+</body>
+</html>
