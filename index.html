@@ -88,24 +88,24 @@ background:linear-gradient(90deg,#e0729a,var(--rosa))}
 .titulo-secao span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
 color:var(--suave);white-space:nowrap}
 .titulo-secao i{flex:1;height:1px;background:var(--linha)}
-.premios{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
-.premio{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);
-overflow:hidden;box-shadow:var(--sombra);display:flex;flex-direction:column}
-.premio .foto{position:relative;aspect-ratio:1;background:var(--rosa-fundo)}
-.premio.h .foto{background:#e7edf7}
-.premio .foto img{width:100%;height:100%;object-fit:cover}
-.premio .selo{position:absolute;left:8px;top:8px;background:rgba(255,252,250,.93);
-border-radius:100px;padding:4px 10px;font-size:10.5px;font-weight:700;letter-spacing:.05em;
-text-transform:uppercase;backdrop-filter:blur(4px)}
-.premio.h .selo{color:#2f4f86}
-.premio.m .selo{color:var(--rosa)}
-.premio .info{padding:11px 12px 13px}
-.premio .rot{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--suave)}
-.premio .txt{font-weight:600;margin-top:3px;font-size:14.5px;line-height:1.3}
+.premio{background:var(--papel);border:1px solid var(--linha);border-radius:20px;
+overflow:hidden;box-shadow:var(--sombra);margin-bottom:28px}
+.premio .foto{position:relative;aspect-ratio:5/4;background:#e9e4df;overflow:hidden}
+.premio .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+object-position:50% 92%;opacity:0;transition:opacity .35s ease}
+.premio .foto img.ok{opacity:1}
 .premio .semfoto{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-font-size:34px}
-.premio.h .semfoto{color:#2f4f86}
-.premio.m .semfoto{color:var(--rosa)}
+font-size:38px;color:var(--suave)}
+.premio .selo{position:absolute;left:12px;top:12px;z-index:2;background:rgba(255,252,250,.94);
+border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:var(--rosa);
+backdrop-filter:blur(4px);box-shadow:0 4px 12px -6px rgba(90,50,45,.5)}
+.premio .info{padding:15px 18px 17px}
+.premio .txt{font-family:'Cormorant Garamond',Georgia,serif;font-size:27px;font-weight:600;
+line-height:1.08}
+.premio .marca{font-size:13px;color:var(--suave);margin-top:4px}
+.premio .vantagens{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.premio .vantagens span{font-size:12px;font-weight:600;color:var(--tinta);background:var(--creme);
+border:1px solid var(--linha);border-radius:100px;padding:4px 10px}
 
 /* --- mapa --- */
 h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;
@@ -118,6 +118,39 @@ border-radius:100px;padding:8px 14px;font-size:13px;font-weight:700}
 .atalho:active{background:var(--rosa-fundo)}
 .atalho.limpar{border-color:var(--linha);color:var(--suave)}
 
+.navegar{position:sticky;top:0;z-index:5;margin:0 -16px 4px;padding:10px 16px 2px;
+background:rgba(253,246,240,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.navegar .ferramentas{margin-bottom:8px}
+.faixas{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px;margin:0 -2px 10px;
+scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.faixas::-webkit-scrollbar{display:none}
+.faixa{flex:none;border:1px solid var(--linha);background:var(--papel);border-radius:12px;
+padding:7px 11px;text-align:left;line-height:1.2;min-width:78px}
+.faixa b{display:block;font-size:13.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.faixa small{font-size:11px;color:var(--suave)}
+.faixa small.cheia{color:var(--verde)}
+.faixa[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.faixa[aria-pressed="true"] small{color:rgba(255,255,255,.72)}
+.faixa .marca-sel{display:inline-block;min-width:17px;height:17px;border-radius:9px;background:var(--rosa);
+color:#fff;font-size:10.5px;font-weight:700;text-align:center;line-height:17px;padding:0 4px;
+margin-left:5px;vertical-align:1px}
+.ferramentas{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.busca{flex:1;min-width:0;position:relative}
+.busca input{width:100%;padding:10px 12px;border:1.5px solid var(--linha);border-radius:11px;
+font-size:16px;background:var(--papel);color:var(--tinta)}
+.busca input:focus{outline:none;border-color:var(--rosa)}
+.alternar{flex:none;display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+color:var(--suave);border:1px solid var(--linha);background:var(--papel);border-radius:11px;padding:10px 12px}
+.alternar i{width:30px;height:18px;border-radius:10px;background:var(--linha);position:relative;transition:background .15s}
+.alternar i::after{content:'';position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;
+background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:transform .15s}
+.alternar[aria-pressed="true"]{color:var(--tinta)}
+.alternar[aria-pressed="true"] i{background:var(--rosa)}
+.alternar[aria-pressed="true"] i::after{transform:translateX(12px)}
+.n.achado{animation:achado 1.2s ease 2}
+@keyframes achado{50%{box-shadow:0 0 0 4px rgba(212,80,126,.35)}}
+.vazio-faixa{grid-column:1/-1;text-align:center;padding:22px 10px;font-size:13.5px;color:var(--suave)}
+
 .legenda{display:flex;gap:8px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
 .legenda span{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--suave);
 background:var(--papel);border:1px solid var(--linha);border-radius:100px;padding:5px 11px}
@@ -127,7 +160,7 @@ background:var(--papel);border:1px solid var(--linha);border-radius:100px;paddin
 .bolinha.pago{background:var(--verde-claro);border:1.5px solid #b7dcc6}
 
 .mapa{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:7px;margin-bottom:26px}
-.n{aspect-ratio:1;border-radius:11px;font-size:13.5px;font-weight:700;
+.n{aspect-ratio:1;border-radius:11px;font-size:13px;letter-spacing:-.01em;font-weight:700;
 background:var(--papel);border:1.5px solid var(--rosa-borda);color:var(--rosa);
 display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;
 transition:transform .12s ease, background .12s ease, box-shadow .12s ease}
@@ -152,7 +185,7 @@ transform:translateY(140%);transition:transform .26s cubic-bezier(.32,.72,0,1)}
 .barra.on{transform:translateY(0)}
 .barra .conta{flex:1;min-width:0}
 .barra .conta b{display:block;font-size:14.5px;font-weight:700;line-height:1.25}
-.barra .conta small{font-size:12px;color:var(--suave)}
+.barra .conta small{display:block;font-size:12px;color:var(--suave);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .barra .btn{flex:none;padding:14px 20px}
 
 /* --- folha --- */
@@ -171,7 +204,7 @@ box-shadow:0 -20px 50px -30px rgba(90,50,45,.8)}
 border-top:1px solid var(--linha);display:flex;gap:9px}
 .folha h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;text-align:center}
 
-.fichas{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px}
+.fichas{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:12px 0 4px;max-height:196px;overflow-y:auto}
 .ficha{background:var(--rosa);color:#fff;border-radius:10px;font-weight:700;font-size:14px;
 padding:8px 10px;display:flex;align-items:center;gap:7px;font-variant-numeric:tabular-nums}
 .ficha b{font-weight:700}
@@ -266,7 +299,10 @@ body.com-barra .toast{bottom:96px}
 (function(){
 'use strict';
 var API=new URLSearchParams(location.search).get('api')||null;
-var CFG={},NUMS={},TOTAL=200,MAXSEL=20;
+var CFG={},NUMS={},TOTAL=600,MAXSEL=50,BLOCO=100;
+var faixa=null;             /* início da faixa aberta no mapa (1, 101, 201...) */
+var soLivres=false;         /* esconde os números que já têm dono */
+var RESUMO={vendidos:0};
 var sel=[];                 /* números escolhidos, em ordem de toque */
 var reservas=[];            /* reservas confirmadas nesta compra */
 var $=function(i){return document.getElementById(i)};
@@ -306,18 +342,40 @@ function carregar(){
   });
 }
 
-function cartaoPremio(classe,selo,rot,texto,foto,icone){
+var PREMIO_PADRAO='Tapete de Pedra Diatomita';
+var DETALHE_PADRAO='WebDecor';
+var VANTAGENS_PADRAO='Absorção rápida, Banheiro sempre seco';
+
+function cartaoPremio(){
+  var texto=(CFG.premio||PREMIO_PADRAO).trim();
   if(!texto) return '';
-  var f=(foto||'').trim();
-  return '<div class="premio '+classe+'">'+
+  var detalhe=(CFG.premioDetalhe!=null?CFG.premioDetalhe:DETALHE_PADRAO).trim();
+  var vant=(CFG.premioVantagens!=null?CFG.premioVantagens:VANTAGENS_PADRAO)
+    .split(',').map(function(x){return x.trim()}).filter(Boolean);
+  var f=(CFG.fotoPremio||'premio.jpg').trim();
+  return '<div class="premio">'+
     '<div class="foto">'+
-      '<span class="semfoto">'+icone+'</span>'+
-      (f?'<img src="'+esc(f)+'" alt="'+esc(texto)+'" loading="lazy" '+
-         'onerror="this.remove()">':'')+
-      '<span class="selo">'+selo+'</span>'+
+      '<span class="semfoto">&#127873;</span>'+
+      (f?'<img data-foto="'+esc(f)+'" alt="'+esc(texto)+'">':'')+
+      '<span class="selo">O prêmio</span>'+
     '</div>'+
-    '<div class="info"><div class="rot">'+rot+'</div>'+
-    '<div class="txt">'+esc(texto)+'</div></div></div>';
+    '<div class="info"><div class="txt">'+esc(texto)+'</div>'+
+    (detalhe?'<div class="marca">'+esc(detalhe)+'</div>':'')+
+    (vant.length?'<div class="vantagens">'+vant.map(function(v){
+      return '<span>'+esc(v)+'</span>'}).join('')+'</div>':'')+
+    '</div></div>';
+}
+
+/* carrega a imagem com até 2 novas tentativas — o GitHub Pages às vezes demora
+   alguns segundos pra servir um arquivo recém-enviado */
+function carregarFoto(img,src,tent){
+  tent=tent||0;
+  img.onload=function(){img.classList.add('ok')};
+  img.onerror=function(){
+    if(tent<2) setTimeout(function(){
+      carregarFoto(img,src+(src.indexOf('?')<0?'?':'&')+'t='+Date.now(),tent+1)},1500*(tent+1));
+  };
+  img.src=src;
 }
 
 function pintar(r){
@@ -327,6 +385,8 @@ function pintar(r){
     img.onload=function(){ $('retrato').classList.remove('escondido') };
     img.onerror=function(){ $('retrato').classList.add('escondido') };
     img.alt=CFG.beneficiada?('Foto de '+CFG.beneficiada):'Foto de quem está sendo ajudada';
+    /* força o navegador a buscar a foto nova em vez da antiga que ficou em cache */
+    if(!/^(https?:|data:)/.test(foto) && foto.indexOf('?')<0) foto+='?v=20260916';
     img.src=foto;
   }
   if(CFG.beneficiada){
@@ -338,6 +398,7 @@ function pintar(r){
   $('para').innerHTML='&#10084; Cada número, '+moeda(valor());
   $('para').classList.remove('escondido');
 
+  RESUMO=r;
   var pct=Math.round((r.vendidos/TOTAL)*100);
   var livres=TOTAL-r.vendidos;
   var h='';
@@ -346,14 +407,7 @@ function pintar(r){
      '<span><b>'+r.vendidos+'</b> de '+TOTAL+' números</span><span>'+pct+'%</span></div>'+
      '<div class="trilho"><i id="barraProg"></i></div></div>';
 
-  var pH=cartaoPremio('h','Ele','Se homem ganhar',CFG.premioHomem,
-        CFG.fotoPremioHomem||'premio-h.jpg','&#9794;');
-  var pM=cartaoPremio('m','Ela','Se mulher ganhar',CFG.premioMulher,
-        CFG.fotoPremioMulher||'premio-m.jpg','&#9792;');
-  if(pH||pM){
-    h+='<div class="titulo-secao"><span>O prêmio</span><i></i></div>';
-    h+='<div class="premios">'+pH+pM+'</div>';
-  }
+  h+=cartaoPremio();
 
   h+='<h2 class="serif">Escolha seus números</h2>';
   h+='<p class="sub">'+(CFG.aberta===false?'Rifa encerrada — obrigado a todos &#128151;'
@@ -364,6 +418,7 @@ function pintar(r){
        '<button class="atalho" data-sorte="1">Escolher 1 pra mim</button>'+
        (livres>=3?'<button class="atalho" data-sorte="3">+3</button>':'')+
        (livres>=5?'<button class="atalho" data-sorte="5">+5</button>':'')+
+       (livres>=10?'<button class="atalho" data-sorte="10">+10</button>':'')+
        '<button class="atalho limpar escondido" id="btnLimpar" data-limpar>Limpar</button>'+
        '</div>';
   }
@@ -373,15 +428,13 @@ function pintar(r){
      '<span><i class="bolinha aguard"></i> aguardando pagamento</span>'+
      '<span><i class="bolinha pago"></i> pago</span></div>';
 
-  h+='<div class="mapa" id="mapa">';
-  for(var i=1;i<=TOTAL;i++){
-    var x=NUMS[i];
-    var cls=x?(x.status==='pago'?'pago':'aguard'):(sel.indexOf(i)>=0?'escolhido':'');
-    var tit=x?(x.status==='pago'?('Pago — '+esc(x.nome)):'Aguardando pagamento'):'Livre';
-    h+='<button class="n '+cls+'" data-n="'+i+'" title="'+tit+'" '+
-       (x?'disabled aria-disabled="true"':'aria-pressed="'+(sel.indexOf(i)>=0)+'"')+'>'+i+'</button>';
-  }
-  h+='</div>';
+  h+='<div class="navegar"><div class="faixas" id="faixas" role="tablist"></div>';
+  h+='<div class="ferramentas">'+
+     '<div class="busca"><input id="busca" inputmode="numeric" enterkeyhint="go" '+
+       'placeholder="Buscar número (1 a '+TOTAL+')" aria-label="Buscar número"></div>'+
+     '<button class="alternar" id="btnLivres" aria-pressed="'+soLivres+'"><i></i>Só livres</button>'+
+     '</div></div>';
+  h+='<div class="mapa" id="mapa"></div>';
 
   h+='<div class="rodape">';
   if(CFG.dataSorteio) h+='<p>Sorteio em <b>'+esc(CFG.dataSorteio)+'</b></p>';
@@ -394,6 +447,69 @@ function pintar(r){
   $('conteudo').className='';
   $('conteudo').innerHTML=h;
   setTimeout(function(){var b=$('barraProg');if(b)b.style.width=pct+'%'},80);
+  var fp=document.querySelector('.premio img[data-foto]');
+  if(fp) carregarFoto(fp,fp.getAttribute('data-foto'));
+
+  if(faixa===null || faixa>TOTAL) faixa=primeiraFaixaLivre();
+  pintarFaixas();
+  pintarMapa();
+}
+
+/* ---------- faixas de 100 em 100 ---------- */
+function fimFaixa(ini){return Math.min(ini+BLOCO-1,TOTAL)}
+function livresEntre(a,b){var c=0;for(var i=a;i<=b;i++) if(!NUMS[i]) c++;return c}
+function selEntre(a,b){return sel.filter(function(n){return n>=a&&n<=b}).length}
+function primeiraFaixaLivre(){
+  for(var ini=1;ini<=TOTAL;ini+=BLOCO) if(livresEntre(ini,fimFaixa(ini))) return ini;
+  return 1;
+}
+
+function pintarFaixas(){
+  var box=$('faixas');if(!box) return;
+  if(TOTAL<=BLOCO){box.classList.add('escondido');return}
+  var h='';
+  for(var ini=1;ini<=TOTAL;ini+=BLOCO){
+    var fim=fimFaixa(ini),liv=livresEntre(ini,fim),s=selEntre(ini,fim);
+    h+='<button class="faixa" role="tab" data-faixa="'+ini+'" aria-pressed="'+(ini===faixa)+'">'+
+       '<b>'+ini+'–'+fim+(s?'<span class="marca-sel">'+s+'</span>':'')+'</b>'+
+       '<small'+(liv?'':' class="cheia"')+'>'+(liv?plural(liv,'livre','livres'):'esgotada &#10003;')+'</small>'+
+       '</button>';
+  }
+  box.innerHTML=h;
+  var ativa=box.querySelector('[aria-pressed="true"]');
+  if(ativa) box.scrollLeft=Math.max(0,ativa.offsetLeft-box.clientWidth/2+ativa.clientWidth/2);
+}
+
+function pintarMapa(){
+  var m=$('mapa');if(!m) return;
+  var ini=TOTAL<=BLOCO?1:faixa,fim=TOTAL<=BLOCO?TOTAL:fimFaixa(faixa);
+  var h='',mostrados=0;
+  for(var i=ini;i<=fim;i++){
+    var x=NUMS[i];
+    if(x && soLivres) continue;
+    mostrados++;
+    var cls=x?(x.status==='pago'?'pago':'aguard'):(sel.indexOf(i)>=0?'escolhido':'');
+    var tit=x?(x.status==='pago'?('Pago — '+esc(x.nome)):'Aguardando pagamento'):'Livre';
+    h+='<button class="n '+cls+'" data-n="'+i+'" title="'+tit+'" '+
+       (x?'disabled aria-disabled="true"':'aria-pressed="'+(sel.indexOf(i)>=0)+'"')+'>'+i+'</button>';
+  }
+  if(!mostrados) h='<div class="vazio-faixa">Todos os números de '+ini+' a '+fim+
+    ' já têm dono. Escolha outra faixa acima.</div>';
+  m.innerHTML=h;
+}
+
+function irPara(n){
+  if(!n||n<1||n>TOTAL) return avisar('Os números vão de 1 a '+TOTAL);
+  var x=NUMS[n];
+  if(x && soLivres){soLivres=false;var t=$('btnLivres');if(t)t.setAttribute('aria-pressed','false')}
+  faixa=Math.floor((n-1)/BLOCO)*BLOCO+1;
+  pintarFaixas();pintarMapa();
+  var b=document.querySelector('.n[data-n="'+n+'"]');
+  if(b){
+    b.scrollIntoView({behavior:'smooth',block:'center'});
+    b.classList.remove('achado');void b.offsetWidth;b.classList.add('achado');
+  }
+  if(x) avisar('O '+n+' já '+(x.status==='pago'?'foi vendido':'está reservado'));
 }
 
 /* ---------- seleção ---------- */
@@ -411,7 +527,7 @@ function alternar(n){
     if(sel.length>=MAXSEL) return avisar('Dá pra reservar até '+MAXSEL+' números por vez');
     sel.push(n);marcar(n,true);
   }
-  barra();
+  barra();pintarFaixas();
 }
 
 function sortear(qtd){
@@ -424,14 +540,14 @@ function sortear(qtd){
     var n=livres.splice(j,1)[0];
     sel.push(n);marcar(n,true);pegou++;
   }
-  barra();
+  barra();pintarFaixas();
   if(pegou) avisar(pegou===1?('Número '+sel[sel.length-1]+' separado pra você')
                             :(pegou+' números separados pra você'));
 }
 
 function limpar(){
   sel.slice().forEach(function(n){marcar(n,false)});
-  sel=[];barra();
+  sel=[];barra();pintarFaixas();
 }
 
 function barra(){
@@ -555,6 +671,12 @@ function pagamento(res){
 
 /* ---------- cliques ---------- */
 document.addEventListener('click',function(e){
+  var fx=e.target.closest('[data-faixa]');
+  if(fx){faixa=Number(fx.getAttribute('data-faixa'));pintarFaixas();pintarMapa();return}
+  if(e.target.closest('#btnLivres')){
+    soLivres=!soLivres;$('btnLivres').setAttribute('aria-pressed',String(soLivres));
+    pintarMapa();return;
+  }
   var b=e.target.closest('[data-n],[data-sorte],[data-limpar],[data-continuar],[data-tirar],'+
     '[data-fechar],[data-reservar],[data-copiar],[data-zap]');
   if(!b)return;
@@ -616,7 +738,22 @@ document.addEventListener('click',function(e){
     return;
   }
 });
-document.addEventListener('keydown',function(e){if(e.key==='Escape')fechar()});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')fechar();
+  if(e.key==='Enter' && e.target && e.target.id==='busca'){
+    e.preventDefault();irPara(Number(e.target.value.replace(/\D/g,'')));e.target.blur();
+  }
+});
+var tb;
+document.addEventListener('input',function(e){
+  if(!e.target||e.target.id!=='busca') return;
+  var v=e.target.value.replace(/\D/g,'');
+  if(v!==e.target.value) e.target.value=v;
+  clearTimeout(tb);
+  /* vai sozinho quando o número já está completo (ex.: 437) */
+  if(v && (v.length>=String(TOTAL).length || Number(v)*10>TOTAL))
+    tb=setTimeout(function(){irPara(Number(v))},450);
+});
 
 if(!API){
   $('conteudo').className='';
